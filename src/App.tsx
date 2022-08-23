@@ -1,18 +1,35 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { CreateElement } from './components/Create_element';
 import {Wheather_element} from './components/wheather_element';
 function App() {
 const [value, setValue]= useState("")
+
+const [dateNow, setDate] = useState(getTime())
+console.log(dateNow);
+
+useEffect( () => {
+  setInterval(()=>{
+    setDate(getTime())
+  },1000)
+
+})
+
+function getTime() {
+  return(  
+  <>
+  <div className="text-white text-5xl">{getDay()}</div>
+  <div className="text-white text-4xl">{new Date().getHours()}:{new Date().getMinutes()}</div>
+  </>)
+
+}
+
 function changeHandler(event: React.ChangeEvent<HTMLInputElement>) {
   setValue(event.target.value)
   
 }
-console.log(Wheather_element);
 let filterValue =Wheather_element.filter(weather =>{
   return weather.City.toLowerCase().includes(value.toLowerCase())
 })
-    console.log(filterValue);
-    console.log(value);
     function getDay() {
       if (new Date().getDay()===1) {
         return "Monday"
@@ -42,8 +59,7 @@ let filterValue =Wheather_element.filter(weather =>{
   return (
     <>
     <div className="time">
-     <div className="text-white text-5xl">{getDay()}</div>
-    <div className="text-white text-4xl">{new Date().getHours()}:{new Date().getMinutes()}</div>
+    {getTime()}
     </div>
     <div className="">
       <input className='text-white rounded border-none' type="text" placeholder='Enter city'
