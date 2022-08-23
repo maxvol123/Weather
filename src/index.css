@@ -6,7 +6,9 @@ body{
     background-repeat: no-repeat;
     background-size:cover;
     overflow:hidden;
-    height: 100vh;
+    height: 100%;
+    overflow-y: scroll;
+    background-attachment: fixed
 }
 input{
     background-color: rgba(0, 0, 0, 0.5);
@@ -15,6 +17,6 @@ input{
     border-left-style: hidden;
     border-bottom-style: groove;
 }
-.no-outline:focus {
-    outline: none;
-  }
+.time{
+font-family: 'Montserrat', sans-serif;
+}
